@@ -1,7 +1,7 @@
 name: "bukhill-test-petshop"
 
 services:
-  db:
+  mysql:
     image: mysql:8.4
     platform: linux/amd64
     container_name: bukhill-petshop-db
@@ -28,7 +28,7 @@ services:
     ports:
         - "9000:9000"
     volumes:
-        - ./app:/var/www/:delegated
+        - .:/var/www/
 
   composer:
     build:
@@ -66,12 +66,12 @@ services:
       context: .
       dockerfile: docker/nginx/nginx.dockerFile
     ports:
-      - "60001:60001"
+      - "7001:80"
     volumes:
       - ./:/var/www/
     depends_on:
       - php
-      - db
+      - mysql
       - redis
       - npm
 
@@ -80,9 +80,9 @@ services:
       context: .
       dockerfile: docker/php/php.dockerFile
     volumes:
-      - .:/var/www/:delegated
+      - .:/var/www/
     working_dir: /var/www/
     depends_on:
-      - db
-      - nginx
+      - php
+      - mysql
     entrypoint: [ "php", "/var/www/artisan" ]
