@@ -35,6 +35,7 @@ COPY . /var/www
 
 RUN composer install --no-scripts
 
+
 RUN php artisan key:generate \
     && php artisan storage:link \
     && chmod -R 775 ./storage ./bootstrap/cache
