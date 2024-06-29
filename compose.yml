@@ -1,0 +1,88 @@
+name: "bukhill-test-petshop"
+
+services:
+  db:
+    image: mysql:8.4
+    platform: linux/amd64
+    container_name: bukhill-petshop-db
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./.env
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/php.dockerFile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    ports:
+        - "9000:9000"
+    volumes:
+        - ./app:/var/www/:delegated
+
+  composer:
+    build:
+      context: .
+      dockerfile: docker/php/php.dockerFile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    volumes:
+       - ./:/var/www/
+    depends_on:
+      - php
+    entrypoint: [ 'composer', 'install', '--ignore-platform-reqs' ]
+
+
+  redis:
+    image: redis:7-alpine
+    platform: linux/amd64
+    ports:
+      - "60379:6379"
+    volumes:
+      - ./redis-data:/data
+    env_file:
+      - ./.env
+
+  npm:
+    image: node:current-alpine
+    volumes:
+      - ./:/var/www
+    entrypoint: ["npm", "install"]
+    working_dir: /var/www
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/nginx.dockerFile
+    ports:
+      - "60001:60001"
+    volumes:
+      - ./:/var/www/
+    depends_on:
+      - php
+      - db
+      - redis
+      - npm
+
+  artisan:
+    build:
+      context: .
+      dockerfile: docker/php/php.dockerFile
+    volumes:
+      - .:/var/www/:delegated
+    working_dir: /var/www/
+    depends_on:
+      - db
+      - nginx
+    entrypoint: [ "php", "/var/www/artisan" ]
