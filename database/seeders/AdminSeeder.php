@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'avatar' => fake()->uuid,
             'is_marketing' => 0,
-            'type' => UserType::ADMIN->value,
+            'is_admin' => UserType::ADMIN->value,
             'phone_number' => fake()->phoneNumber(),
             'address' => fake()->address(),
         ]);

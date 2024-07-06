@@ -22,7 +22,7 @@ class LoginAction
         $user = User::query()
             ->where('email', $loginData->email)
             ->when($isAdmin, function (Builder $query) {
-                $query->where('type', UserType::ADMIN->value);
+                $query->where('is_admin', UserType::ADMIN->value);
             })
             ->first();
 
@@ -42,7 +42,10 @@ class LoginAction
         }
 
         $accessToken = $user->createToken(
-            tokenTitle: sprintf('%s-%s-login-token', $user->email, $user->type)
+            tokenTitle: sprintf(
+                '%s-%s-login-token',
+                $user->email, $user->is_admin ? 'admin' : 'user'
+            )
         );
 
         return $accessToken->getPlainTextToken();

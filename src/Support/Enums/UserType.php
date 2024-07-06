@@ -2,9 +2,9 @@
 
 namespace Support\Enums;
 
-enum UserType: string
+enum UserType: int
 {
-    case ADMIN = 'admin';
+    case ADMIN = 1;
 
-    case USER = 'user';
+    case USER = 0;
 }

@@ -20,7 +20,7 @@ use Support\Enums\UserType;
  * @property string $uuid
  * @property string $first_name
  * @property string $last_name
- * @property string $type
+ * @property bool $is_admin
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property mixed $password
@@ -54,7 +54,7 @@ use Support\Enums\UserType;
  * @method static Builder|User whereLastName($value)
  * @method static Builder|User wherePassword($value)
  * @method static Builder|User wherePhoneNumber($value)
- * @method static Builder|User whereType($value)
+ * @method static Builder|User whereIsAdmin($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereUuid($value)
  */
@@ -73,7 +73,7 @@ class User extends Authenticatable
         'uuid',
         'first_name',
         'last_name',
-        'type',
+        'is_admin',
         'avatar',
         'address',
         'phone_number',
@@ -91,6 +91,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'id',
     ];
 
     /**
@@ -103,11 +104,13 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_marketing' => 'boolean',
         ];
     }
 
     public function isAdmin(): bool
     {
-        return $this->type === UserType::ADMIN->value;
+        return $this->is_admin == UserType::ADMIN->value;
     }
 }

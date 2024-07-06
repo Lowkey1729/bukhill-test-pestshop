@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid()->index();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('type', 50)->default(UserType::USER->value);
+            $table->tinyInteger('is_admin')->default(UserType::USER->value);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
