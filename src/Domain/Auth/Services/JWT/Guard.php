@@ -59,7 +59,7 @@ final class Guard
      */
     protected function isValidAccessToken(?Authenticatable $user, string $token): bool
     {
-        if (! $token) {
+        if (! $token || ! $user) {
             return false;
         }
 

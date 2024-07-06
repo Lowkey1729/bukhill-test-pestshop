@@ -3,7 +3,6 @@
 use App\Models\JwtToken;
 use App\Models\User;
 use Database\Factories\UserFactory;
-use Domain\Auth\Services\JWT\WebTokenService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function PHPUnit\Framework\assertCount;
@@ -11,10 +10,12 @@ use function PHPUnit\Framework\assertCount;
 uses(RefreshDatabase::class);
 
 test('it generates a valid token', function () {
-    $user = User::query()->first();
-    $jwtService = new WebTokenService($user);
-    $token = $jwtService->issueToken();
-    tokenIsAValidOne($token, $user?->uuid);
+    /** @var User $user */
+    $user = (new UserFactory())->create();
+
+    $plainTextToken = $user->createToken('Test token')->getPlainTextToken();
+
+    tokenIsCompliantToRFC7519($plainTextToken, $user->getKey());
 });
 
 test('it saves generated token', function () {
@@ -26,11 +27,11 @@ test('it saves generated token', function () {
     /** @var JwtToken $latestToken */
     $latestToken = $user->tokens()->latest()->first();
 
-    expect($token->tokenable)
-        ->toBe($latestToken->tokenable);
+    expect($token->tokenable->toArray())
+        ->toBe($latestToken->tokenable->toArray());
 });
 
-function tokenIsAValidOne(string $token, string $userUUid): void
+function tokenIsCompliantToRFC7519(string $token, string $modelKey): void
 {
     $parts = explode('.', $token);
 
@@ -41,7 +42,7 @@ function tokenIsAValidOne(string $token, string $userUUid): void
     expect($parts)
         ->toHaveCount(3)
         ->and($payload)
-        ->toBeJson()
+        ->toBeArray()
         ->toHaveKey('iss')
         ->toHaveKey('jti')
         ->toHaveKey('aud')
@@ -49,5 +50,5 @@ function tokenIsAValidOne(string $token, string $userUUid): void
         ->toHaveKey('nbf')
         ->toHaveKey('exp')
         ->and($payload['jti'])
-        ->toBe($userUUid);
+        ->toBe($modelKey);
 }

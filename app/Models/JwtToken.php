@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Carbon;
 
 /**
- *
- *
  * @property int $id
  * @property string $tokenable_type
  * @property int $tokenable_id
@@ -23,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read  User $tokenable
+ *
  * @method static Builder|JwtToken newModelQuery()
  * @method static Builder|JwtToken newQuery()
  * @method static Builder|JwtToken query()
@@ -37,12 +36,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|JwtToken whereTokenableId($value)
  * @method static Builder|JwtToken whereTokenableType($value)
  * @method static Builder|JwtToken whereUpdatedAt($value)
+ *
  * @mixin JwtToken
  */
 class JwtToken extends Model
 {
     protected $fillable = [
-        'unique_id',
+        'token',
         'name',
         'abilities',
         'expires_at',
@@ -72,7 +72,7 @@ class JwtToken extends Model
 
     public static function findToken(string $token): ?object
     {
-        return static::where('unique_id', hash('sha256', $token))->first();
+        return static::where('token', hash('sha256', $token))->first();
     }
 
     /**

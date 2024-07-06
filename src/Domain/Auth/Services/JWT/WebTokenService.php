@@ -45,7 +45,7 @@ final class WebTokenService
     /**
      * @throws Exception
      */
-    public function __construct(protected ?User $user)
+    public function __construct(protected User $user)
     {
         $this->parser = new Parser(new JoseEncoder());
         $this->tokenBuilder = (new Builder(
@@ -71,11 +71,10 @@ final class WebTokenService
             }
         };
 
-        if ($this->user) {
-            /** @var non-empty-string $identifiedBy */
-            $identifiedBy = $this->user->getAuthIdentifier();
-            $this->identifiedBy = $identifiedBy;
-        }
+        /** @var non-empty-string $identifiedBy */
+        $identifiedBy = $this->user->getAuthIdentifier();
+        $this->identifiedBy = $identifiedBy;
+
     }
 
     /**

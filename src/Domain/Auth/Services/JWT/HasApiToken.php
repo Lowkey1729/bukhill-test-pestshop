@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasApiToken
 {
-    protected string $plainTextToken;
+    public string $plainTextToken;
 
-    protected JwtToken $accessToken;
+    public JwtToken $accessToken;
 
     /**
      * @return MorphMany<JwtToken>
@@ -34,7 +34,7 @@ trait HasApiToken
         $this->plainTextToken = $jwtService->issueToken();
 
         $token = $this->tokens()->create([
-            'unique_id' => hash('sha256', $this->getPlainTextToken()),
+            'token' => hash('sha256', $this->getPlainTextToken()),
             'name' => $tokenTitle,
             'expires_at' => $jwtService->getExpiresAt(),
             'abilities' => $abilities,
@@ -82,7 +82,7 @@ trait HasApiToken
 
         JwtToken::query()
             ->where(
-                'unique_id',
+                'token',
                 hash('sha256', $token)
             )->delete();
     }
