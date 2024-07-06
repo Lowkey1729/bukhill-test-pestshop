@@ -15,7 +15,7 @@ class OnlyAdminAccess
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Responsable
+    public function handle(Request $request, Closure $next): Responsable|Response
     {
         $user = $request->user();
 

@@ -37,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Register the guard.
+     *
+     * @param  array<string, mixed>  $config
      */
     protected function createGuard(Factory $auth, array $config): RequestGuard
     {
