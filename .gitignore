@@ -19,5 +19,7 @@ yarn-error.log
 /.idea
 /.vscode
 mysql-data/
+mysql-test-data/
 redis-data/
 .env.testing
+
