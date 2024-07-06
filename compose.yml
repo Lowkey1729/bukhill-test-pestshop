@@ -89,6 +89,5 @@ services:
     depends_on:
       - api
       - mysql
-      - mysql_test
       - redis
       - npm

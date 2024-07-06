@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use Domain\Auth\Services\JWT\Guard;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Domain\Auth\V1\Services\JWT\Guard;
 use Illuminate\Auth\RequestGuard;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         if ($this->app->isLocal()) {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
         }
     }
 

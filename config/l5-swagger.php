@@ -5,14 +5,14 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'L5 Swagger UI',
+                'title' => 'Bukhill Petshop APIs',
             ],
 
             'routes' => [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/documentation',
+                'api' => 'api/doc',
             ],
             'paths' => [
                 /*
@@ -39,6 +39,7 @@ return [
                  * Absolute paths to directory containing the swagger annotations are stored.
                 */
                 'annotations' => [
+                    base_path('app'),
                     base_path('src'),
                 ],
 

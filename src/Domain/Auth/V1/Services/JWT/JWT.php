@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Auth\Services\JWT;
+namespace Domain\Auth\V1\Services\JWT;
 
 use App\Models\JwtToken;
 use Illuminate\Contracts\Auth\Authenticatable;

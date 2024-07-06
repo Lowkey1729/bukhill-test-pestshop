@@ -1,11 +1,10 @@
 <?php
 
-namespace Domain\Auth\Services\JWT;
+namespace Domain\Auth\V1\Services\JWT;
 
 use App\Models\JwtToken;
 use Exception;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;

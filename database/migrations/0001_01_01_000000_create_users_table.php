@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Support\Enums\UserType;
 
 return new class extends Migration
 {
@@ -13,11 +14,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->uuid()->index();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('type', 50)->default(UserType::USER->value);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('avatar');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->boolean('is_marketing')->default(0);
+            $table->timestamp('last_login_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
 
