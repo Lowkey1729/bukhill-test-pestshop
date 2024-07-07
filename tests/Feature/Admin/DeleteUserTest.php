@@ -23,9 +23,8 @@ test('it only allows admin users to delete user details', function () {
 
     expect($response->json())
         ->success->toBeFalse()
-        ->error->toBe("You do not have the permission to access this resource");
+        ->error->toBe('You do not have the permission to access this resource');
 });
-
 
 test('it deletes user from the system', function () {
 

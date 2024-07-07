@@ -31,7 +31,7 @@ test('it only allows admin users to edit user details', function () {
 
     expect($response->json())
         ->success->toBeFalse()
-        ->error->toBe("You do not have the permission to access this resource");
+        ->error->toBe('You do not have the permission to access this resource');
 });
 
 test('it updates some details of a user on the system', function () {
