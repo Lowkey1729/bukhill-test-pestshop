@@ -5,6 +5,7 @@ namespace Domain\Auth\V1\Requests;
 use Domain\Auth\V1\DTOs\RegisterData;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\LaravelData\WithData;
+use Support\Rules\IsBooleanRule;
 
 class RegisterRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class RegisterRequest extends FormRequest
             'avatar' => ['required', 'uuid'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'unique:users'],
-            'is_marketing' => ['sometimes', 'accepted'],
+            'is_marketing' => ['sometimes', new IsBooleanRule],
         ];
     }
 
@@ -37,5 +38,12 @@ class RegisterRequest extends FormRequest
     public function dataClass(): string
     {
         return RegisterData::class;
+    }
+
+    protected function passedValidation(): void
+    {
+        $this->merge([
+            'is_marketing' => filter_var($this->input('is_marketing'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE),
+        ]);
     }
 }

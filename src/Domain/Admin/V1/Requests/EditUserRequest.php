@@ -5,6 +5,7 @@ namespace Domain\Admin\V1\Requests;
 use Domain\Admin\V1\DTOs\EditUserData;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\LaravelData\WithData;
+use Support\Rules\IsBooleanRule;
 
 class EditUserRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class EditUserRequest extends FormRequest
             'avatar' => ['sometimes', 'string'],
             'address' => ['sometimes', 'string'],
             'phone_number' => ['sometimes', 'unique:users'],
-            'is_marketing' => ['sometimes', 'bool'],
+            'is_marketing' => ['sometimes', new IsBooleanRule],
         ];
     }
 
@@ -34,5 +35,12 @@ class EditUserRequest extends FormRequest
     public function dataClass(): string
     {
         return EditUserData::class;
+    }
+
+    protected function passedValidation(): void
+    {
+        $this->merge([
+            'is_marketing' => filter_var($this->input('is_marketing'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE),
+        ]);
     }
 }
