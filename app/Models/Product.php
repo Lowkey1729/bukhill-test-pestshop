@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use HasUuid, SoftDeletes;
-
 
     protected $fillable = [
         'metadata',
@@ -21,7 +19,7 @@ class Product extends Model
         'category_uuid',
         'deleted_at',
         'price',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $casts = [
@@ -29,7 +27,7 @@ class Product extends Model
     ];
 
     protected $hidden = [
-        'id'
+        'id',
     ];
 
     /**

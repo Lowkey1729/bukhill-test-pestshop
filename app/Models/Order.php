@@ -27,7 +27,6 @@ class Order extends Model
         'address' => 'array',
     ];
 
-
     protected $hidden = [
         'id',
         'payment_id',
