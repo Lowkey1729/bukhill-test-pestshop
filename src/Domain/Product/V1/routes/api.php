@@ -26,5 +26,5 @@ Route::prefix('product')->group(function () {
         ->name('product.details');
 });
 
-Route::get('products}', FetchProductsController::class)
+Route::get('products', FetchProductsController::class)
     ->name('product.all');

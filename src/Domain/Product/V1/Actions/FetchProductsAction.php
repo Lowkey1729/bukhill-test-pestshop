@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class FetchProductsAction
 {
+    /**
+     * @return array<string, mixed>
+     */
     public static function execute(FetchProductsData $data): array
     {
         return Product::query()
