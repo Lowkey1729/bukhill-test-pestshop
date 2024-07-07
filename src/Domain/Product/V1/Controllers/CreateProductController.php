@@ -17,6 +17,7 @@ class CreateProductController extends Controller
      *       path="/api/v1/product/create",
      *       operationId="ProductCreate",
      *       tags={"Product"},
+     *       security={{"bearerAuth":{}}},
      *
      *       @OA\RequestBody(
      *

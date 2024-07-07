@@ -18,6 +18,7 @@ class UpdateProductController extends Controller
      *        path="/api/v1/product/{uuid}",
      *        operationId="ProductEdit",
      *        tags={"Product"},
+     *        security={{"bearerAuth":{}}},
      *
      *        @OA\Parameter (
      *            in="path",
