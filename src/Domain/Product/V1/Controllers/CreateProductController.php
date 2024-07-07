@@ -43,7 +43,6 @@ class CreateProductController extends Controller
      *                   @OA\Property(property="description",type="string"),
      *                   @OA\Property(property="brand",type="string"),
      *                   @OA\Property(property="image",type="string"),
-     *                   @OA\Property(property="metadata",type="object"),
      *               ),
      *           ),
      *       ),

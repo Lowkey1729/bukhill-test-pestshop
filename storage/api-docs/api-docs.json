@@ -635,6 +635,71 @@
                                     },
                                     "image": {
                                         "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "create product successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/product/{uuid}": {
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "ProductEdit",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "category_uuid": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "number"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string"
                                     },
                                     "metadata": {
                                         "type": "object"
@@ -650,7 +715,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "create product successful",
+                        "description": "update product successful",
                         "content": {
                             "application/json": {
                                 "schema": {}

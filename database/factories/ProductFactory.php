@@ -20,8 +20,7 @@ class ProductFactory extends Factory
     {
         return [
             'category_uuid' => Category::query()
-                ->pluck('uuid')[fake()
-                ->numberBetween(1, Category::query()->count() - 1)],
+                ->pluck('uuid')[rand(0, 1)],
             'title' => fake()->word,
             'metadata' => [],
             'price' => fake()->numberBetween(900.12, 123.89),

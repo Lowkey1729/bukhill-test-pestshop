@@ -23,7 +23,6 @@ class CreateProductRequest extends FormRequest
             'description' => ['required', 'string'],
             'brand' => ['required', 'string'],
             'image' => ['required', 'uuid'],
-            'metadata' => ['required', 'array'],
         ];
     }
 
