@@ -2,6 +2,8 @@
 
 use Domain\Auth\V1\Controllers\AdminLoginController;
 use Domain\Auth\V1\Controllers\AdminRegisterController;
+use Domain\Auth\V1\Controllers\ForgotPasswordController;
+use Domain\Auth\V1\Controllers\ResetPasswordController;
 use Domain\Auth\V1\Controllers\UserLoginController;
 use Domain\Auth\V1\Controllers\UserRegisterController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +22,10 @@ Route::prefix('user')->group(function () {
 
     Route::post('register', UserRegisterController::class)
         ->name('user.register');
+
+    Route::post('forgot-password', ForgotPasswordController::class)
+        ->name('user.forgot-password');
+
+    Route::post('reset-password', ResetPasswordController::class)
+        ->name('user.reset-password');
 });

@@ -5,7 +5,7 @@ namespace Domain\Auth\V1\Exceptions;
 use Exception;
 use Support\Concerns\ExceptionTrait;
 
-class LoginException extends Exception
+class ResetPasswordException extends Exception
 {
     use ExceptionTrait;
 }
