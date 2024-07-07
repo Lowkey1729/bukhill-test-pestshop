@@ -18,9 +18,9 @@ class UserListingData extends Data
         public ?bool $is_marketing,
         public ?string $phone_number,
         #[Computed]
-        public ?string $page,
+        public ?int $page,
         #[Computed]
-        public ?string $limit,
+        public ?int $limit,
         public ?string $created_at,
         #[Computed]
         public ?bool $desc,

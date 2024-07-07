@@ -71,19 +71,4 @@ trait HasApiToken
     {
         return $this->accessToken;
     }
-
-    public function deleteAccessToken(): void
-    {
-        $token = request()->bearerToken();
-
-        if (! $token) {
-            return;
-        }
-
-        JwtToken::query()
-            ->where(
-                'token',
-                hash('sha256', $token)
-            )->delete();
-    }
 }

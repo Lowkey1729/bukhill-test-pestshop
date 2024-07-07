@@ -22,7 +22,7 @@ class EditUserData extends Data
 
     ) {
         //        $this->is_marketing = $this->is_marketing ?? false;
-        $this->password = $this->password ?? Hash::make($this->password);
-        $this->email = $this->email ?? strtolower($this->email);
+        $this->password = $this->password ?? Hash::make((string) $this->password);
+        $this->email = $this->email ?? strtolower((string) $this->email);
     }
 }

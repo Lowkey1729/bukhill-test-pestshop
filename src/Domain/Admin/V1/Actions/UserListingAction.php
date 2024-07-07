@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserListingAction
 {
+    /**
+     * @return array<string, mixed>
+     */
     public static function execute(UserListingData $data): array
     {
         return User::query()
@@ -29,7 +32,7 @@ class UserListingAction
             ->when($data->is_marketing, function (Builder $query) use ($data) {
                 $query->where('is_marketing', $data->is_marketing);
             })
-            ->orderBy($data->sort_by, $data->direction)
+            ->orderBy((string) $data->sort_by, $data->direction)
             ->paginate($data->limit)
             ->toArray();
     }

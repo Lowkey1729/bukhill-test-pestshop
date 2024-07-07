@@ -12,6 +12,9 @@ class UserListingRequest extends FormRequest
     /** @use WithData<string>*/
     use WithData;
 
+    /**
+     * @return array<string, array<int, mixed>>
+     */
     public function rules(): array
     {
         return [
