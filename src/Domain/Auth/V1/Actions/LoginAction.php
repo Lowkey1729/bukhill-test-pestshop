@@ -48,6 +48,8 @@ class LoginAction
             )
         );
 
+        $user->update(['last_login_at' => now()]);
+
         return $accessToken->getPlainTextToken();
     }
 }

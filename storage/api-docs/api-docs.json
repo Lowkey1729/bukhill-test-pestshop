@@ -574,6 +574,29 @@
                     }
                 }
             }
+        },
+        "/api/v1/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "FetchUserDetails",
+                "responses": {
+                    "200": {
+                        "description": "User details fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
