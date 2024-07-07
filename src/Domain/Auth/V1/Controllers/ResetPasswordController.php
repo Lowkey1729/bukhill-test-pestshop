@@ -57,6 +57,7 @@ class ResetPasswordController extends Controller
      *         @OA\JsonContent()
      *       ),
      *   )
+     *
      * @throws InvalidDataClass
      * @throws ResetPasswordException
      */
