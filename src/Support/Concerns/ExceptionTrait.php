@@ -11,7 +11,7 @@ trait ExceptionTrait
     {
         return new FailedResponse(
             errorMessage: $this->getMessage(),
-            statusCode: $this->getCode()
+            statusCode: $this->getCode() != 0 ? $this->getCode() : 400
         );
     }
 }

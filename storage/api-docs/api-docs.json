@@ -5,6 +5,44 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/admin/user-delete/{uuid}": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminDeletetUser",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/admin/user-edit/{uuid}": {
             "put": {
                 "tags": [
