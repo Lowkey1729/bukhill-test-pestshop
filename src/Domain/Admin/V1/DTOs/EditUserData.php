@@ -17,7 +17,7 @@ class EditUserData extends Data
         public ?string $password,
         public ?string $avatar,
         public ?string $address,
-        public ?string $is_marketing,
+        public ?bool $is_marketing,
         public ?string $phone_number,
 
     ) {

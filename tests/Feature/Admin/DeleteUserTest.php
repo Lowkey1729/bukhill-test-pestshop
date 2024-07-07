@@ -5,16 +5,8 @@ use Database\Factories\UserFactory;
 use Domain\Auth\V1\Services\JWT\JWT;
 use Support\Enums\UserType;
 
-test('it only allows authenticated users to edit user details', function () {
-    $response = $this->putJson(
-        uri: route('admin.user-edit', ['uuid' => fake()->uuid]),
-    );
+test('it only allows admin users to delete user details', function () {
 
-    $response->assertStatus(401);
-});
-
-test('it only allows admin users to edit user details', function () {
-    /** @var User $user */
     $user = (new UserFactory())
         ->state(fn (array $attributes) => [
             'is_admin' => UserType::USER->value,
@@ -23,8 +15,8 @@ test('it only allows admin users to edit user details', function () {
 
     JWT::actingAs($user);
 
-    $response = $this->putJson(
-        uri: route('admin.user-edit', ['uuid' => $user->uuid]),
+    $response = $this->deleteJson(
+        uri: route('admin.user-delete', ['uuid' => $user->uuid]),
     );
 
     $response->assertStatus(403);
@@ -34,7 +26,8 @@ test('it only allows admin users to edit user details', function () {
         ->error->toBe("You do not have the permission to access this resource");
 });
 
-test('it updates some details of a user on the system', function () {
+
+test('it deletes user from the system', function () {
 
     /** @var User $user */
     $user = (new UserFactory())
@@ -45,11 +38,8 @@ test('it updates some details of a user on the system', function () {
 
     JWT::actingAs($user);
 
-    $response = $this->putJson(
-        uri: route('admin.user-edit', ['uuid' => $user->uuid]),
-        data: [
-            'email' => $email = fake()->email,
-        ]
+    $response = $this->deleteJson(
+        uri: route('admin.user-delete', ['uuid' => $user->uuid]),
     );
 
     $response->assertStatus(200);
@@ -57,7 +47,5 @@ test('it updates some details of a user on the system', function () {
     $data = $response->json();
 
     expect($data)
-        ->success->toBeTrue()
-        ->and($data['data'])
-        ->email->toBe($email);
+        ->success->toBeTrue();
 });
