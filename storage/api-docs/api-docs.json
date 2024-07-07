@@ -390,6 +390,29 @@
                 }
             }
         },
+        "/api/v1/user/logout": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "LogoutUser",
+                "responses": {
+                    "200": {
+                        "description": "User logout successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/user/reset-password": {
             "post": {
                 "tags": [

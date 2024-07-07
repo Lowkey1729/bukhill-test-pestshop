@@ -3,6 +3,7 @@
 use Domain\Auth\V1\Controllers\AdminLoginController;
 use Domain\Auth\V1\Controllers\AdminRegisterController;
 use Domain\Auth\V1\Controllers\ForgotPasswordController;
+use Domain\Auth\V1\Controllers\LogoutController;
 use Domain\Auth\V1\Controllers\ResetPasswordController;
 use Domain\Auth\V1\Controllers\UserLoginController;
 use Domain\Auth\V1\Controllers\UserRegisterController;
@@ -28,4 +29,8 @@ Route::prefix('user')->group(function () {
 
     Route::post('reset-password', ResetPasswordController::class)
         ->name('user.reset-password');
+
+    Route::get('logout', LogoutController::class)
+        ->middleware('auth:jwt')
+        ->name('user.logout');
 });
