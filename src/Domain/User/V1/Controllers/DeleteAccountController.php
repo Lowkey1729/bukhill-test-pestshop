@@ -13,6 +13,27 @@ use Support\Responses\V1\SuccessResponse;
 class DeleteAccountController extends Controller
 {
     /**
+     * @OA\Delete(
+     *         path="/api/v1/user/delete",
+     *         operationId="DeletetUser",
+     *         tags={"User"},
+     *         security={{"bearerAuth":{}}},
+     *
+     *         @OA\Response(
+     *             response="200",
+     *             description="User deleted successfully",
+     *
+     *             @OA\JsonContent()
+     *         ),
+     *
+     *         @OA\Response(
+     *            response="422",
+     *            description="Unprocessable Entity",
+     *
+     *           @OA\JsonContent()
+     *         ),
+     *     )
+     *
      * @throws DeleteUserException
      */
     public function __invoke(Request $request): Responsable

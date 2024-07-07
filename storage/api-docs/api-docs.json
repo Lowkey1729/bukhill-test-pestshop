@@ -413,7 +413,7 @@
                 ]
             }
         },
-        "/api/v1/user/reset-password": {
+        "/api/v1/user/reset-password-token": {
             "post": {
                 "tags": [
                     "User"
@@ -521,7 +521,7 @@
                 }
             }
         },
-        "/api/v1/user/register": {
+        "/api/v1/user/create": {
             "post": {
                 "tags": [
                     "User"
@@ -596,6 +596,37 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/v1/user/delete": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "DeletetUser",
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/user/edit": {
@@ -680,6 +711,62 @@
                 "responses": {
                     "200": {
                         "description": "User details fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/orders": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "operationId": "UserOrders",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "View orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "content": {
                             "application/json": {
                                 "schema": {}

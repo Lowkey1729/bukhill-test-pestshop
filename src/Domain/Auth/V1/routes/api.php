@@ -21,13 +21,13 @@ Route::prefix('user')->group(function () {
     Route::post('login', UserLoginController::class)
         ->name('user.login');
 
-    Route::post('register', UserRegisterController::class)
+    Route::post('create', UserRegisterController::class)
         ->name('user.register');
 
     Route::post('forgot-password', ForgotPasswordController::class)
         ->name('user.forgot-password');
 
-    Route::post('reset-password', ResetPasswordController::class)
+    Route::post('reset-password-token', ResetPasswordController::class)
         ->name('user.reset-password');
 
     Route::get('logout', LogoutController::class)
