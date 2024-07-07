@@ -29,6 +29,8 @@ class JWT
             }
         }
 
+        $token = $token->getMock();
+
         /**
          * @var JwtToken $token
          */

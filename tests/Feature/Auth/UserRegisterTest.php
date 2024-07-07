@@ -17,7 +17,7 @@ test('it registers user into the system', function () {
             'password' => 'password',
             'password_confirmation' => 'password',
             'address' => fake()->address,
-            'marketing' => '1',
+            'is_marketing' => 1,
             'avatar' => fake()->uuid,
         ]
 

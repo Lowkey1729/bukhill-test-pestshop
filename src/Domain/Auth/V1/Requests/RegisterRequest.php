@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
             'avatar' => ['required', 'uuid'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'unique:users'],
-            'is_marketing' => ['nullable', 'accepted'],
+            'is_marketing' => ['sometimes', 'accepted'],
         ];
     }
 
