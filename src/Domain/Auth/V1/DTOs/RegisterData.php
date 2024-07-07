@@ -11,6 +11,7 @@ class RegisterData extends Data
     public function __construct(
         public string $first_name,
         public string $last_name,
+        #[Computed]
         public string $email,
         #[Computed, \SensitiveParameter]
         public string $password,
@@ -22,5 +23,6 @@ class RegisterData extends Data
     ) {
         $this->is_marketing = $this->is_marketing ?? false;
         $this->password = Hash::make($this->password);
+        $this->email = strtolower($this->email);
     }
 }
