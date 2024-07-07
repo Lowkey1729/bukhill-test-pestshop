@@ -10,6 +10,8 @@ use Domain\User\V1\Exceptions\ViewOrderException;
 class ViewOrderAction
 {
     /**
+     * @return array<string, mixed>
+     *
      * @throws ViewOrderException
      */
     public static function execute(ViewOrderData $data, User $user): array

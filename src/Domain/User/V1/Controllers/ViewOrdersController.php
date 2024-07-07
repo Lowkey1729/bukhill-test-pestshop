@@ -20,6 +20,7 @@ class ViewOrdersController extends Controller
      *         operationId="UserOrders",
      *         tags={"User"},
      *         security={{"bearerAuth":{}}},
+     *
      *      @OA\Parameter (
      *             in="query",
      *             name="limit",
@@ -60,6 +61,7 @@ class ViewOrdersController extends Controller
      *           @OA\JsonContent()
      *         ),
      *     )
+     *
      * @throws InvalidDataClass
      * @throws ViewOrderException
      */

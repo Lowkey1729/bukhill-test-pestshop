@@ -6,4 +6,5 @@ Route::prefix('/v1/')->group(function () {
     require __DIR__.'/../src/Domain/Auth/V1/routes/api.php';
     require __DIR__.'/../src/Domain/Admin/V1/routes/api.php';
     require __DIR__.'/../src/Domain/User/V1/routes/api.php';
+    require __DIR__.'/../src/Domain/Product/V1/routes/api.php';
 });
