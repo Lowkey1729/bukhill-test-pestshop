@@ -671,6 +671,37 @@
             }
         },
         "/api/v1/product/{uuid}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "ProductFetchDetails",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "fetched product successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Product"

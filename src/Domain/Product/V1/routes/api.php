@@ -2,6 +2,7 @@
 
 use Domain\Product\V1\Controllers\CreateProductController;
 use Domain\Product\V1\Controllers\DeleteProductController;
+use Domain\Product\V1\Controllers\FetchProductDetailsController;
 use Domain\Product\V1\Controllers\UpdateProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,7 @@ Route::prefix('product')->group(function () {
             ->name('product.delete');
 
     });
+
+    Route::get('{uuid}', FetchProductDetailsController::class)
+        ->name('product.details');
 });
