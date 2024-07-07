@@ -5,7 +5,7 @@ use Database\Factories\UserFactory;
 use Domain\Auth\V1\Services\JWT\JWT;
 
 test('it only allows authenticated users to edit user details', function () {
-    $response = $this->postJson(
+    $response = $this->putJson(
         uri: route('admin.user-edit', ['uuid' => fake()->uuid]),
     );
 
@@ -13,7 +13,7 @@ test('it only allows authenticated users to edit user details', function () {
 });
 
 test('it only allows admin users to edit user details', function () {
-    $response = $this->postJson(
+    $response = $this->putJson(
         uri: route('admin.user-edit', ['uuid' => fake()->uuid]),
     );
 
@@ -27,7 +27,7 @@ test('it updates some details of a user on the system', function () {
 
     JWT::actingAs($user);
 
-    $response = $this->postJson(
+    $response = $this->putJson(
         uri: route('admin.user-edit', ['uuid' => $user->uuid]),
         data: [
             'email' => $email = fake()->email,

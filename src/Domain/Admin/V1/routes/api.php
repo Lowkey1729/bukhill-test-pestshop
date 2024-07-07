@@ -8,7 +8,7 @@ Route::prefix('admin')
     ->middleware(['auth:jwt', OnlyAdminAccess::class])
     ->group(function () {
 
-        Route::post('user-edit/{uuid}', EditUserController::class)
+        Route::put('user-edit/{uuid}', EditUserController::class)
             ->name('admin.user-edit');
 
     });

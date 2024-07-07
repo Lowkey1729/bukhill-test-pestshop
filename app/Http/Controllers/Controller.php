@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
  *
  * @OA\SecurityScheme(
  *     type="http",
- *     securityScheme="bearerToken",
+ *     securityScheme="bearerAuth",
  *     scheme="bearer",
  *     bearerFormat="JWT"
  * )
