@@ -7,7 +7,6 @@ use Domain\Product\V1\Exceptions\FetchProductDetailsException;
 
 test('it throws an exception for an invalid product id', function () {
 
-
     $response = $this->getJson(route('product.details', ['uuid' => 'fake uuid']));
 
     $response->assertStatus(404);
@@ -16,7 +15,6 @@ test('it throws an exception for an invalid product id', function () {
         ->exception
         ->toBeInstanceOf(FetchProductDetailsException::class);
 });
-
 
 test('it successfully fetches the details of a product', function () {
 
