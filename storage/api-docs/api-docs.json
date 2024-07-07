@@ -85,6 +85,100 @@
                 ]
             }
         },
+        "/api/v1/admin/user-listing/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "AdminUserListing",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "is_marketing",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "created_at",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin uder data edited successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/admin/login": {
             "post": {
                 "tags": [

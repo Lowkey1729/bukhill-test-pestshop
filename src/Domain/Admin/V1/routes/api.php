@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\OnlyAdminAccess;
 use Domain\Admin\V1\Controllers\EditUserController;
+use Domain\Admin\V1\Controllers\UserListingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -10,5 +11,8 @@ Route::prefix('admin')
 
         Route::put('user-edit/{uuid}', EditUserController::class)
             ->name('admin.user-edit');
+
+        Route::get('user-listing/', UserListingController::class)
+            ->name('admin.user-listing');
 
     });

@@ -64,6 +64,7 @@ class EditUserController extends Controller
      *         @OA\JsonContent()
      *       ),
      *   )
+     *
      * @throws InvalidDataClass|EditUserException
      */
     public function __invoke(EditUserRequest $request, string $uuid): Responsable
