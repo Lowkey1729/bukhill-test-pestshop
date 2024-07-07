@@ -3,7 +3,6 @@
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Domain\Auth\V1\Services\JWT\JWT;
-use Support\Enums\UserType;
 
 test('it allows only authenticated user to delete account', function () {
     $response = $this->getJson(
