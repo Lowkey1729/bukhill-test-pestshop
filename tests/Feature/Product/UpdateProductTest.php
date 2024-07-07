@@ -9,7 +9,7 @@ use Domain\Auth\V1\Services\JWT\JWT;
 use Domain\Product\V1\Exceptions\UpdateProductException;
 
 test('it allows authenticated users to update product', function () {
-    $response = $this->postJson(route('product.update', ['uuid' => fake()->uuid]));
+    $response = $this->putJson(route('product.update', ['uuid' => fake()->uuid]));
 
     $response->assertStatus(401);
 
@@ -22,7 +22,7 @@ test('it throws an exception for an invalid product id', function () {
 
     JWT::actingAs($user);
 
-    $response = $this->postJson(route('product.update', ['uuid' => 'fake uuid']));
+    $response = $this->putJson(route('product.update', ['uuid' => 'fake uuid']));
 
     $response->assertStatus(404);
 
@@ -43,7 +43,7 @@ test('it successfully updates product details', function () {
 
     JWT::actingAs($user);
 
-    $response = $this->postJson(
+    $response = $this->putJson(
         uri: route('product.update', ['uuid' => $product->uuid]),
         data: $payload = [
             'title' => fake()->title,
