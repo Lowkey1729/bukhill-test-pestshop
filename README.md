@@ -6,15 +6,11 @@ to satisfy the needs of the FE team for them to be able to build the UI.
 
 ## Table of Contents
 
-- [Clone Repository](#clone-repository)
-- [Run Code Locally](#run-code-locally)
-- [Manage Migrations](#manage-migrations)
-
 
 
 ## Clone Repository
 
-Clone the repository into you your local environment
+Clone the repository intoyour local environment
 
 ```bash
 git clone  https://github.com/Lowkey1729/buckhill-test-petshop.git
@@ -37,5 +33,28 @@ docker compose up --build
 ## Manage Migrations
 
 ```
-docker compose run --rm artisan migrate
+docker compose exec api  php artisan migrate --seed
 ```
+
+## Run test cases
+
+```
+docker compose exec api  ./vendor/bin/pest
+```
+
+## Run static analysis check on the Domain directory
+
+```
+./vendor/bin/phpstan analyse --memory-limit=2G src/Domain
+
+```
+
+## Run static analysis check on the full app directory
+
+```
+./vendor/bin/phpstan analyse --memory-limit=2G app
+```
+
+## Visit the swagger documentation age
+http://localhost:7001/api/documentation
+
