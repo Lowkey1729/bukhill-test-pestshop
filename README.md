@@ -13,11 +13,19 @@ to satisfy the needs of the FE team for them to be able to build the UI.
 Clone the repository intoyour local environment
 
 ```bash
-git clone  https://github.com/Lowkey1729/buckhill-test-petshop.git
-cd buckhill-test-petshop
+git clone  https://github.com/Lowkey1729/bukhill-test-pestshop.git
+cd bukhill-test-pestshop
 ```
-Update the .env from the .env.example.
+## Update the .env from the .env.example.
+
+```bash
+cp .env.example .env
+```
 Update the .env.testing from the .env.testing.example.
+
+```bash
+cp .env.testing.example .env.testing
+```
 
 
 ## Run Code Locally
@@ -32,8 +40,12 @@ docker compose up --build
 
 ## Manage Migrations
 
-```
+```bash
 docker compose exec api  php artisan migrate --seed
+```
+
+```bash
+docker compose exec api  php artisan migrate --seed --env=testing
 ```
 
 ## Run test cases
@@ -56,5 +68,5 @@ docker compose exec api  ./vendor/bin/pest
 ```
 
 ## Visit the swagger documentation age
-http://localhost:7001/api/documentation
+http://localhost:7001/api/doc
 
